@@ -48,16 +48,16 @@ git clone git@github.com:fl3pp/moonlander_firmware.git /c/dev/qmk/zsa_qmk_firmwa
 qmk config user.keymap=fl3pp
 ```
 
-5. Compile your keymap
+5. Compile and flash your firmware (`qmk compile` to just build)
 
 ``` bash
-qmk compile
+qmk flash
 ```
 
-6. Flash your firmware (in `.build/moonlander_fl3pp.bin`) using Wally (UI
-   interface)
+Alternatively, you can also flash using the Wally UI (file in
+`.build/moonlander_fl3pp.bin`)
 
-7. You're done!
+6. You're done!
 
 ## Tricks
 
