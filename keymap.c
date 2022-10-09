@@ -23,6 +23,26 @@
 #define SE_SECT_MAC ALGR(KC_6)
 #define MOON_LED_LEVEL LED_LEVEL
 
+enum unicode_names {
+  U_AE,
+  U_ae,
+  U_UE,
+  U_ue,
+  U_OE,
+  U_oe,
+  U_THUMBUP,
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+  [U_AE] = 0xC4,
+  [U_ae] = 0xE4,
+  [U_UE] = 0xDC,
+  [U_ue] = 0xFC,
+  [U_OE] = 0xD6,
+  [U_oe] = 0xF6,
+  [U_THUMBUP] = 0x1F44D,  // 👍
+};
+
 /*
                                      keymaps layout help
 
@@ -72,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,       KC_Q,         KC_W,       KC_E,         KC_R,         KC_T,         LCTL(KC_C),                  LCTL(KC_V),   KC_Z,         KC_U,         KC_I,         KC_O,         KC_P,         KC_BSLASH,
     KC_ESCAPE,    KC_A,         KC_S,       KC_D,         KC_F,         KC_G,         MO(L_UMLAUT),                MO(L_UMLAUT), KC_H,         KC_J,         KC_K,         KC_L,         KC_SCOLON,    KC_QUOTE,
     KC_LSHIFT,    KC_Y,         KC_X,       KC_C,         KC_V,         KC_B,                                                    KC_N,         KC_M,         KC_COMMA,     KC_DOT,       KC_SLASH,     KC_RSHIFT,
-    KC_LCTRL,     KC_DELETE,    KC_LGUI,    KC_LALT,      MO(L_DEV),                  LALT(KC_F4),                 KC_F5,                      MO(L_DEV),    KC_LEFT,      KC_DOWN,      KC_UP,        KC_RIGHT,
+    KC_LCTRL,     _____,        KC_LGUI,    KC_LALT,      MO(L_DEV),                  LALT(KC_F4),                 KC_F5,                      MO(L_DEV),    KC_LEFT,      KC_DOWN,      KC_UP,        KC_RIGHT,
                                                           KC_SPACE,     KC_DELETE,    KC_HOME,                     KC_END,       KC_BSPACE,    KC_ENTER
   ),
   [L_DEV] = LAYOUT_moonlander(
@@ -87,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _____,        _____,        _____,        _____,        _____,        _____,        _____,                     _____,        _____,        _____,        _____,        _____,        _____,        _____,         
     _____,        _____,        _____,        _____,        _____,        _____,        _____,                     _____,        _____,        MU_UE,        _____,        MU_OE,        _____,        _____,         
     _____,        MU_AE,        _____,        _____,        _____,        _____,        KC_TRANS,                  KC_TRANS,     _____,        _____,        _____,        _____,        _____,        _____,         
-    MU_SHIFT,     _____,        _____,        _____,        _____,        _____,                                                 _____,        _____,        _____,        _____,        _____,        MU_SHIFT,
+    MU_SHIFT,     X(U_THUMBUP), _____,        _____,        _____,        _____,                                                 _____,        _____,        _____,        _____,        _____,        MU_SHIFT,
     _____,        _____,        _____,        _____,        _____,                      _____,                     _____,                      _____,        _____,        _____,        _____,        _____,         
                                                             _____,        _____,        _____,                     _____,        _____,        _____
   ),
@@ -142,7 +162,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     break;
   }
 
-  
   return state;
 }
 // return value: Should firmware futher process key?
@@ -160,27 +179,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
 
     case MU_AE:
-    if (custom_state.UMLAUT_SHIFT) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_9) SS_TAP(X_KP_6) ));
-    } else {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_8) ));
-    }
+    register_unicode(unicode_map[custom_state.UMLAUT_SHIFT ? U_AE : U_ae]);
     return false;
 
     case MU_UE:
-    if (custom_state.UMLAUT_SHIFT) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_0) ));
-    } else {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_5) SS_TAP(X_KP_2) ));
-    }
+    register_unicode(unicode_map[custom_state.UMLAUT_SHIFT ? U_UE : U_ue]);
     return false;
 
     case MU_OE:
-    if (custom_state.UMLAUT_SHIFT) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_1) SS_TAP(X_KP_4) ));
-    } else {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_6) ));
-    }
+    register_unicode(unicode_map[custom_state.UMLAUT_SHIFT ? U_OE : U_oe]);
     return false;
 
     case RGB_SLD:

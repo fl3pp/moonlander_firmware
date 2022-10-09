@@ -5,6 +5,12 @@ This repository contains the custom firmware for the
 
 ## Prerequisites
 
+To run:
+
+- [WinCompose](http://wincompose.info/) to enter Unicode code-points
+
+To compile & flash:
+
 - The [Wally](https://ergodox-ez.com/pages/wally) flashing tool
 
 - The [QMK MSYS](https://msys.qmk.fm/) development environment (set
@@ -82,6 +88,18 @@ Note: The console functionality is about 5KB in size, and depending on your
 messages, can take up quite a few CPU cycles. So if you aren't actively
 debugging your keymap, exclude the code from your compilation using the
 `CONSOLE_ENABLE` compilation symbol.
+
+## Unicode
+
+There are multiple ways to send code-points from QMK firmware (see
+[docs](https://docs.qmk.fm/#/feature_unicode)).
+
+This keymap uses the `UNICODEMAP` method to specify the code-points as well
+as the `WINC` input mode (requires WinCompose installation).
+
+The code-points are named using the `unicode_names` enum, specified in the
+`unicode_map` and are accessed through either `X(name)` in the keymap or
+`unicode_map[name]` in code.
 
 ## Other
 
