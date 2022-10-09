@@ -7,9 +7,10 @@ This repository contains the custom firmware for the
 
 - The [Wally](https://ergodox-ez.com/pages/wally) flashing tool
 
-- The [QMK MSYS](https://msys.qmk.fm/) development environment
+- The [QMK MSYS](https://msys.qmk.fm/) development environment (set
+  environment variable `QMK_HOME` to path of installation)
 
-- [ZSA's fork](https://github.com/zsa/qmk_firmware) of the QMK firmware (check current branch)
+- [ZSA's fork](https://github.com/zsa/qmk_firmware) of the QMK firmware (check current release branch)
 
 ``` bash
 git clone --recurse-submodules --branch firmware21 https://github.com/zsa/qmk_firmware zsa_qmk_firmware
@@ -59,7 +60,30 @@ Alternatively, you can also flash using the Wally UI (file in
 
 6. You're done!
 
-## Tricks
+## Debugging
+
+To enable debugging, activate the console in the compilation rules in
+`rules.mk`:
+
+```
+CONSOLE_ENABLE = yes
+```
+
+Inside your keymap, you can then use the `uprintf` function as replacement
+for `printf`.
+
+To view the printed messages, start the QMK debug console:
+
+```
+qmk console
+```
+
+Note: The console functionality is about 5KB in size, and depending on your
+messages, can take up quite a few CPU cycles. So if you aren't actively
+debugging your keymap, exclude the code from your compilation using the
+`CONSOLE_ENABLE` compilation symbol.
+
+## Other
 
 - List supported keyboards
   `qmk list-keyboards`
