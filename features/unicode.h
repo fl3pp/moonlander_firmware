@@ -1,4 +1,8 @@
 // 'UNICODEMAP_ENABLE = yes' in 'rules.mk' required
+
+// Keycodes as 'X(code)' or 'X(code, shift)'
+// print using register_unicode(unicode_map[code])
+
 #ifndef UNICODE_H
 #define UNICODE_H
 

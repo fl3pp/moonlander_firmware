@@ -92,11 +92,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-struct {
-  bool UMLAUT_SHIFT;
-} custom_state;
-
-
 #ifdef CONSOLE_ENABLE
 #define DBG(format, ...) {\
   uprintf(format, ##__VA_ARGS__); \
@@ -116,9 +111,7 @@ void keyboard_post_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t state) {
   uint8_t highest_layer = get_highest_layer(state);
   static uint8_t last_layer = 0;
-
-  // layer did not change
-  if (highest_layer == last_layer) return state;
+  if (highest_layer == last_layer) return state; // layer did not change
   last_layer = highest_layer;
 
   DBG("LAYER SETUP: %u", get_highest_layer(state));
@@ -135,6 +128,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
   return state;
 }
+
 // return value: Should firmware futher process key?
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
