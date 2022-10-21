@@ -1,7 +1,7 @@
 #ifndef UMLAUT_H
 #define UMLAUT_H
 
-#include QMK_KEYBOARD_H
+#include "shim/qmk.h"
 
 #ifdef CONSOLE_ENABLE
 void dbg_umlaut(void);

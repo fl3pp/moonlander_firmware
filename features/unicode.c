@@ -1,3 +1,4 @@
+#include QMK_KEYBOARD_H
 #include "features/unicode.h"
 
 const uint32_t PROGMEM unicode_map[] = {
@@ -10,3 +11,7 @@ const uint32_t PROGMEM unicode_map[] = {
   [U_THUMBUP] = 0x1F44D,  // 👍
   [U_THUMBDWN] = 0x1F44E, // 👎
 };
+
+uint32_t get_unicode_point(enum unicode_names name) {
+  return unicode_map[name];
+}

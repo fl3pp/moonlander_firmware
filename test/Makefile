@@ -1,16 +1,16 @@
 CC=gcc
 CFLAGS=-I. -Wall -I../ -Ilib/
 
-SRC=$(wildcard *.c)
-BIN=test
+SRCS = $(wildcard *.c)
+BINS = $(patsubst %.c,%,$(SRCS))
 
-all: build execute
+all: execute
 
-build:
-	$(CC) $(SRC) -o $(BIN) $(CFLAGS)
+%: %.c
+	$(CC) $(CFLAGS) -o $@ $<
 
-execute:
-	./$(BIN)
+execute: $(BINS)
+	./$(BINS)
 
-clean:
-	rm -f $(BIN)
+clean: 
+	rm -f $(BINS)

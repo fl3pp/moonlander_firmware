@@ -19,7 +19,7 @@ bool toggle_umlaut_shift(void) {
 }
 
 bool print_umlaut_unicode(enum unicode_names code) {
-   register_unicode(unicode_map[code]);
+   qmk_register_unicode(get_unicode_point(code));
    return false;
 }
 bool print_ae(void) { return print_umlaut_unicode(UMLAUT_SHIFT_STATE ? U_AE : U_ae); }
