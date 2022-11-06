@@ -22,6 +22,48 @@ To compile & flash:
 git clone --recurse-submodules --branch firmware21 https://github.com/zsa/qmk_firmware zsa_qmk_firmware
 ```
 
+## Features
+
+Features implemented in this keymap, either explicitly or by utilizing QMK
+features.
+
+### Umlaut
+
+There is an extensive implementation for Umlauts, since they are placed on a
+separate layer and differentiation between upper- and lower case is not
+trivial without either monkey-combinations or losing intuition.
+
+The idea is as following:
+
+- A single shift press without other presses toggles a caps-lock mode for
+  umlauts, in all layers. Leaving the umlaut layer resets the shift-caps
+- Holding the shift down should also work as expected, no matter in which
+  layer the shift was first pressed
+
+The corresponding implementation can be found in `features/umlaut.c-h`.
+
+### Unicode
+
+There are multiple ways to send code-points from QMK firmware (see
+[docs](https://docs.qmk.fm/#/feature_unicode)).
+
+This keymap uses the `UNICODEMAP` method to specify the code-points as well
+as the `WINC` input mode (requires WinCompose installation).
+
+The code-points are named using the `unicode_names` enum, specified in the
+`unicode_map` and are accessed through either `X(name)` in the keymap or
+`unicode_map[name]` in code.
+
+In this keymap, the corresponding functionality can be found in
+`features/unicode.c-h`.
+
+## Test
+
+There is a test infrastructure in place using
+[acutest](https://github.com/mity/acutest) as test framework.
+
+To run them, simply go into the `/test` folder and execute `make`.
+
 ## Environment Setup
 
 1. Start the QMK shell and navigate to the firmware directory
@@ -88,28 +130,6 @@ Note: The console functionality is about 5KB in size, and depending on your
 messages, can take up quite a few CPU cycles. So if you aren't actively
 debugging your keymap, exclude the code from your compilation using the
 `CONSOLE_ENABLE` compilation symbol.
-
-## Test
-
-There is a test infrastructure in place using
-[acutest](https://github.com/mity/acutest) as test framework.
-
-To run them, simply go into the `/test` folder and execute `make`.
-
-## Unicode
-
-There are multiple ways to send code-points from QMK firmware (see
-[docs](https://docs.qmk.fm/#/feature_unicode)).
-
-This keymap uses the `UNICODEMAP` method to specify the code-points as well
-as the `WINC` input mode (requires WinCompose installation).
-
-The code-points are named using the `unicode_names` enum, specified in the
-`unicode_map` and are accessed through either `X(name)` in the keymap or
-`unicode_map[name]` in code.
-
-In this keymap, the corresponding functionality can be found in
-`features/unicode.c-h`.
 
 ## Other
 
