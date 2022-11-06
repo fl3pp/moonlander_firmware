@@ -7,4 +7,4 @@ ORYX_ENABLE = yes
 SPACE_CADET_ENABLE = no
 UNICODEMAP_ENABLE = yes
 
-SRC = matrix.c
+SRC = matrix.c features/umlaut.c features/unicode.c shim/qmk.c
