@@ -7,7 +7,9 @@ This repository contains the custom firmware for the
 
 To run:
 
-- [WinCompose](http://wincompose.info/) to enter Unicode code-points
+- [WinCompose](http://wincompose.info/) to enter Unicode code-points. Set
+  the compose key to `F13` (in `%appdata%\WinCompose\settings.ini` ->
+  `[composing]compose_key=VK.F13`)
 
 To compile & flash:
 
@@ -27,11 +29,15 @@ git clone --recurse-submodules --branch firmware21 https://github.com/zsa/qmk_fi
 Features implemented in this keymap, either explicitly or by utilizing QMK
 features.
 
+### QMK Shim
+
+There is a slim QMK shim set up in order to make testing easier. You
+
 ### Umlaut
 
 There is an extensive implementation for Umlauts, since they are placed on a
 separate layer and differentiation between upper- and lower case is not
-trivial without either monkey-combinations or losing intuition.
+trivial without either monkey-combinations or losing intuitive behavior.
 
 The idea is as following:
 
