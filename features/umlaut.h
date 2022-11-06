@@ -7,10 +7,8 @@
 void dbg_umlaut(void);
 #endif
 
-void reset_umlaut(void);
-bool toggle_umlaut_shift(void);
-bool print_ae(void);
-bool print_oe(void);
-bool print_ue(void);
+void enter_umlaut_layer(void);
+void leave_umlaut_layer(void);
+bool process_keyevent_umlaut(const user_keyevent_t *event);
 
 #endif

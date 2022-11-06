@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I. -Wall -I../ -Ilib/
+CFLAGS=-ggdb -I. -Wall -I../ -Ilib/ -I../../../../../quantum
 
 SRCS = $(wildcard *.c)
 BINS = $(patsubst %.c,%,$(SRCS))

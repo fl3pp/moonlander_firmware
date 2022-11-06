@@ -89,6 +89,13 @@ messages, can take up quite a few CPU cycles. So if you aren't actively
 debugging your keymap, exclude the code from your compilation using the
 `CONSOLE_ENABLE` compilation symbol.
 
+## Test
+
+There is a test infrastructure in place using
+[acutest](https://github.com/mity/acutest) as test framework.
+
+To run them, simply go into the `/test` folder and execute `make`.
+
 ## Unicode
 
 There are multiple ways to send code-points from QMK firmware (see
@@ -100,6 +107,9 @@ as the `WINC` input mode (requires WinCompose installation).
 The code-points are named using the `unicode_names` enum, specified in the
 `unicode_map` and are accessed through either `X(name)` in the keymap or
 `unicode_map[name]` in code.
+
+In this keymap, the corresponding functionality can be found in
+`features/unicode.c-h`.
 
 ## Other
 
