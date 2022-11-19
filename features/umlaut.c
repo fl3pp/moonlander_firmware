@@ -34,6 +34,7 @@ void leave_umlaut_layer(void) {
 bool process_keyevent_umlaut(const user_keyevent_t *event) {
   static bool shift_active;
   static bool shift_tapped_down;
+  
 
   if (event->pressed && is_shift(event->keycode)) {
     shift_active = true;
@@ -41,6 +42,8 @@ bool process_keyevent_umlaut(const user_keyevent_t *event) {
   else if (!event->pressed && is_shift(event->keycode)) {
     shift_active = false;
   }
+
+  if (!UMLAUT_LAYER_ACTIVE) return true;
 
   if (is_shift(event->keycode)) {
     if (event->pressed) {
