@@ -1,10 +1,27 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 
-#include "shim/qmk.h"
-#include "features/unicode.h"
-#include "features/umlaut.h"
+enum unicode_names {
+  U_AE,
+  U_ae,
+  U_UE,
+  U_ue,
+  U_OE,
+  U_oe,
+  U_THUMBUP,
+  U_THUMBDWN,
+};
 
+const uint32_t PROGMEM unicode_map[] = {
+  [U_AE] = 0xC4,
+  [U_ae] = 0xE4,
+  [U_UE] = 0xDC,
+  [U_ue] = 0xFC,
+  [U_OE] = 0xD6,
+  [U_oe] = 0xF6,
+  [U_THUMBUP] = 0x1F44D,  // 👍
+  [U_THUMBDWN] = 0x1F44E, // 👎
+};
 
 /*
                                      keymaps layout help
@@ -33,6 +50,9 @@ ROW 5                          │  │ │  │ │  │    │  │ │  │ �
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
+  KC_AE,
+  KC_UE,
+  KC_OE,
 };
 
 enum layers {
@@ -72,9 +92,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [L_UMLAUT] = LAYOUT_moonlander(
     n____,        n____,        n____,        n____,        n____,        n____,        n____,                     n____,        n____,        n____,        n____,        n____,        n____,        n____,
-    n____,        n____,        n____,        n____,        n____,        n____,        n____,                     n____,        n____,        KC_U,         n____,        KC_O,         n____,        n____,
-    n____,        KC_A,         n____,        n____,        n____,        n____,        KC_TRANS,                  KC_TRANS,     n____,        n____,        n____,        n____,        n____,        n____,
-    KC_LSFT,      X(U_THUMBUP), n____,        n____,        n____,        n____,                                                 n____,        X(U_THUMBDWN),n____,        n____,        n____,        KC_RSFT,
+    n____,        n____,        n____,        n____,        n____,        n____,        n____,                     n____,        n____,        KC_UE,        n____,        KC_OE,        n____,        n____,
+    n____,        KC_AE,        n____,        n____,        n____,        n____,        KC_TRANS,                  KC_TRANS,     n____,        n____,        n____,        n____,        n____,        n____,
+    KC_TRANS,     X(U_THUMBUP), n____,        n____,        n____,        n____,                                                 n____,        X(U_THUMBDWN),n____,        n____,        n____,        KC_TRANS,
     n____,        n____,        n____,        n____,        n____,                      n____,                     n____,                      n____,        n____,        n____,        n____,        n____,
                                                             n____,        n____,        n____,                     n____,        n____,        n____
   ),
@@ -94,42 +114,28 @@ void keyboard_post_init_user(void) {
   DBG("POST KEYBOARD INIT");
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  uint8_t highest_layer = get_highest_layer(state);
-  static uint8_t last_layer = 0;
-  if (highest_layer == last_layer) return state; // layer did not change
-
-  DBG("LAYER SETUP: %u", get_highest_layer(state));
-
-  switch (highest_layer) {
-    case L_BASE:
-       if (last_layer == L_UMLAUT) leave_umlaut_layer();
-       break;
-
-    case L_UMLAUT:
-       enter_umlaut_layer();
-       break;
-  }
-
-  last_layer = highest_layer;
-  return state;
-}
-
-
 // return value: Should firmware futher process key?
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   DBG((record->event.pressed ? "KEY PRESS: %u" : "KEY RELEASE: %u") , keycode);
 
-  // from qmk.h shim
-  user_keyevent_t event = { .keycode = keycode, .pressed = record->event.pressed };
-  if (!process_keyevent_umlaut(&event)) return false;
-
   if (!record->event.pressed) return true;
+
+  const bool shift = (get_mods() | get_oneshot_mods()) & MOD_MASK_SHIFT;
+
   switch (keycode) {
     case RGB_SLD:
-       rgblight_mode(1);
-       return false;
+      rgblight_mode(1);
+      return false;
+    case KC_AE:
+      register_unicode(unicode_map[shift ? U_AE : U_ae]);
+      return false;
+    case KC_UE:
+      register_unicode(unicode_map[shift ? U_UE : U_ue]);
+      return false;
+    case KC_OE:
+      register_unicode(unicode_map[shift ? U_OE : U_oe]);
+      return false;
   }
   return true;
 }

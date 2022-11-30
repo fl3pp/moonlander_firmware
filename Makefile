@@ -1,51 +1,22 @@
 ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+MSYS := $(ROOT_DIR)msys.cmd
 
-all: TEST_EXECUTE QMK-COMPILE
-build: $(TEST_BINS) QMK-COMPILE
-test: TEST_EXECUTE
-flash: QMK-FLASH
-console: QMK-CONSOLE
-setup: QMK-SETUP
-clean: TEST_CLEAN QMK-CLEAN
+all: build
 
-# ########
-# QMK
-# ########
+build:
+	$(MSYS) qmk compile
 
-QMK-SETUP:
-	qmk config user.hide_welcome=True
-	qmk setup --home $(ROOT_DIR)..\..\..\.. --yes
-	qmk config user.keyboard=moonlander
-	qmk config user.keymap=fl3pp
+flash:
+	$(MSYS) qmk flash
 
-QMK-COMPILE:
-	qmk compile
+console:
+	$(MSYS) qmk console
 
-QMK-FLASH:
-	qmk flash
+setup:
+	$(MSYS) qmk config user.hide_welcome=True
+	$(MSYS) qmk setup --home $(ROOT_DIR)..\..\..\.. --yes
+	$(MSYS) qmk config user.keyboard=moonlander
+	$(MSYS) qmk config user.keymap=fl3pp
 
-QMK-CONSOLE:
-	qmk console
-
-QMK-CLEAN:
-	qmk clean
-
-# ########
-# Testing
-# ########
-
-CC := gcc
-CFLAGS := -ggdb -I. -Wall -I/ -Itest/lib/ -I../../../../quantum
-
-TEST_SRCS := $(wildcard ./test/*.c)
-TEST_BINS := $(patsubst %.c, %, $(TEST_SRCS))
-
-$(TEST_BINS): $(TEST_SRCS)
-	$(CC) $(CFLAGS) -o $@ $<
-
-TEST_EXECUTE: $(TEST_BINS)
-	$(TEST_BINS)
-
-TEST_CLEAN:
-	rm -f $(TEST_BINS)
-
+clean:
+	$(MSYS) qmk clean

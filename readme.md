@@ -1,7 +1,13 @@
 # fl3pp moonlander firmware
 
-This repository contains the custom firmware for the
+This repository contains custom firmware for the
 [ZSA Moonlander](https://www.zsa.io/moonlander/) keyboard.
+
+There once was a more elaborate setup in place, including a custom QMK
+abstraction as well a custom implemented features and a test infrastructure.
+This was removed for the sake of simplicity. You can still find the source
+code under the git tag
+[unicode](https://github.com/fl3pp/moonlander_firmware/tree/unicode).
 
 ## Prerequisites
 
@@ -12,6 +18,8 @@ To run:
   `[composing]compose_key=VK.F13`)
 
 To compile & flash:
+
+- The [Make](https://gnuwin32.sourceforge.net/packages/make.htm#:~:text=Make%20is%20a%20tool%20which,compute%20it%20from%20other%20files) build tool
 
 - The [Wally](https://ergodox-ez.com/pages/wally) flashing tool
 
@@ -26,69 +34,23 @@ git clone --recurse-submodules --branch firmware21 https://github.com/zsa/qmk_fi
 
 ## Makefile and MSYS
 
-There is a `Makefile` setup which automates many of the building steps. In
-order to execute it, you must use the `make.cmd` in the root, which
-automatically redirects all commands to the MSYS environment.
+There is a `Makefile` setup which automates many of the building steps. It
+automatically redirects all commands to the MSYS environment for Windows.
 
 Following make targets have been setup:
 
-- `.\make build`: Builds the test binaries and the keymap
-- `.\make test`: Builds and executes the test binaries
-- `.\make flash`: Builds and flashed the firmware on the keyboard. In order
+- `make build`: Builds the keymap
+- `make flash`: Builds and flashes the firmware on the keyboard. In order
   for this command to work, you must first set your keyboard in reset-mode
   (`RESET` in `keymap.c`)
-- `.\make setup`: Configure QMK to use this repository
-- `.\make clean`: Remove the test binaries and keymap binary
-- `.\make console`: Start the QMK Debug console
-- `.\make all`: Execute tests and compile keymap
+- `make setup`: Configure QMK to use this repository
+- `make clean`: Remove keymap binary
+- `make console`: Start the QMK debug console
+- `make all`: Compile keymap
 
-There also is a `qmk.cmd` file available, which allows you to either execute
-`qmk` commands directly in the MSYS environment or start an interactive
-shell if started without arguments.
-
-## Features
-
-Features implemented in this keymap, either explicitly or by utilizing QMK
-features.
-
-### QMK Shim
-
-There is a slim QMK shim set up in order to make testing easier.
-
-### Umlaut
-
-There is an extensive implementation for Umlauts, since they are placed on a
-separate layer and differentiation between upper- and lower case is not
-trivial without either monkey-combinations or losing intuitive behavior.
-
-The idea is as following:
-
-- A single shift press without other presses toggles a caps-lock mode for
-  umlauts. Leaving the umlaut layer resets the caps-lock
-- Holding the shift down should also work as expected, no matter in which
-  layer the shift was first pressed down
-
-The corresponding implementation can be found in `features/umlaut.c-h`.
-
-### Unicode
-
-There are multiple ways to send code-points from QMK firmware (see
-[docs](https://docs.qmk.fm/#/feature_unicode)).
-
-This keymap uses the `UNICODEMAP` method to specify the code-points as well
-as the `WINC` input mode (requires WinCompose installation).
-
-The code-points are named using the `unicode_names` enum, specified in the
-`unicode_map` and are accessed through either `X(name)` in the keymap or
-`unicode_map[name]` in code.
-
-In this keymap, the corresponding functionality can be found in
-`features/unicode.c-h`.
-
-## Test
-
-There is a test infrastructure in place using
-[acutest](https://github.com/mity/acutest) as test framework.
+There also is a `msys.cmd` file available, which allows you to either
+execute commands directly in the MSYS environment or start an interactive
+shell if execute without additional process arguments.
 
 ## Environment Setup
 
@@ -105,13 +67,13 @@ git clone git@github.com:fl3pp/moonlander_firmware.git /c/dev/qmk/zsa_qmk_firmwa
 3. Setup the QMK Environment using `make`
 
 ``` bash
-.\make setup
+make setup
 ```
 
 4. Compile your firmware
 
 ``` bash
-.\make build
+make build
 ```
 
 ## Debugging
@@ -129,7 +91,7 @@ for `printf`.
 To view the printed messages, start the QMK debug console:
 
 ```
-.\make console
+make console
 ```
 
 Note: The console functionality is about 5KB in size, and depending on your
@@ -140,8 +102,8 @@ the `CONSOLE_ENABLE` compilation symbol.
 ## Other
 
 - List supported keyboards
-  `qmk list-keyboards`
+  `.\msys.cmd qmk list-keyboards`
 
 - Print a layout of a keyboard using:
-  `qmk info --keyboard <keyboard> --layouts`
+  `.\msys.cmd qmk info --keyboard <keyboard> --layouts`
 
