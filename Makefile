@@ -3,7 +3,7 @@ ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 all: TEST_EXECUTE QMK-COMPILE
 build: $(TEST_BINS) QMK-COMPILE
 test: TEST_EXECUTE
-flash: QMK-COMPILE QMK-FLASH
+flash: QMK-FLASH
 console: QMK-CONSOLE
 setup: QMK-SETUP
 clean: TEST_CLEAN QMK-CLEAN

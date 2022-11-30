@@ -3,15 +3,8 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 #define ORYX_CONFIGURATOR
-#define IGNORE_MOD_TAP_INTERRUPT
 #undef DEBOUNCE
 #define DEBOUNCE 10
-
-#undef TAPPING_TERM
-#define TAPPING_TERM 0
-
-#undef ONESHOT_TIMEOUT
-#define ONESHOT_TIMEOUT 1500
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
 #define FIRMWARE_VERSION u8"XNq49/jN0wo"
@@ -22,3 +15,6 @@
 
 #define UNICODE_SELECTED_MODES UC_WINC
 #define UNICODE_KEY_WINC KC_F13
+
+#define ONESHOT_TAP_TOGGLE 3
+#define ONESHOT_TIMEOUT 5000

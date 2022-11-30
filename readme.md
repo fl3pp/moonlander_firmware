@@ -1,4 +1,4 @@
-# Custom Moonlander Firmware
+# fl3pp moonlander firmware
 
 This repository contains the custom firmware for the
 [ZSA Moonlander](https://www.zsa.io/moonlander/) keyboard.
