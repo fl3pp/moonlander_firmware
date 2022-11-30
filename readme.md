@@ -4,9 +4,9 @@ This repository contains custom firmware for the
 [ZSA Moonlander](https://www.zsa.io/moonlander/) keyboard.
 
 There once was a more elaborate setup in place, including a custom QMK
-abstraction as well a custom implemented features and a test infrastructure.
-This was removed for the sake of simplicity. You can still find the source
-code under the git tag
+abstraction as well as custom implemented features and a test
+infrastructure. This was removed for the sake of simplicity. You can still
+find the source code under the git tag
 [unicode](https://github.com/fl3pp/moonlander_firmware/tree/unicode).
 
 ## Prerequisites
@@ -50,17 +50,15 @@ Following make targets have been setup:
 
 There also is a `msys.cmd` file available, which allows you to either
 execute commands directly in the MSYS environment or start an interactive
-shell if execute without additional process arguments.
+shell if executed without additional process arguments.
 
 ## Environment Setup
 
 1. Install and configure the prerequisites
 
-2. Clone your keymap code into `keyboards/moonlander/keymaps/<layout>` and
-   set the default keymap
+2. Clone your keymap code into `keyboards/moonlander/keymaps/<layout>`
 
 ``` bash
-# You'll maybe have to do this outside of the QMK shell
 git clone git@github.com:fl3pp/moonlander_firmware.git /c/dev/qmk/zsa_qmk_firmware/keyboards/moonlander/keymaps/fl3pp
 ```
 
