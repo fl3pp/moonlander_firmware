@@ -13,12 +13,12 @@ enum unicode_names {
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-  [U_AE] = 0xC4,
-  [U_ae] = 0xE4,
-  [U_UE] = 0xDC,
-  [U_ue] = 0xFC,
-  [U_OE] = 0xD6,
-  [U_oe] = 0xF6,
+  [U_AE] = 0xC4,          // Ä
+  [U_ae] = 0xE4,          // ä
+  [U_UE] = 0xDC,          // Ü
+  [U_ue] = 0xFC,          // ü
+  [U_OE] = 0xD6,          // Ö
+  [U_oe] = 0xF6,          // ö
   [U_THUMBUP] = 0x1F44D,  // 👍
   [U_THUMBDWN] = 0x1F44E, // 👎
 };
@@ -70,8 +70,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MO(L_F),      KC_GRAVE,     KC_1,       KC_2,         KC_3,         KC_4,         KC_5,                        KC_6,         KC_7,         KC_8,         KC_9,         KC_0,         n____,        MO(L_F),
     KC_TAB,       KC_Q,         KC_W,       KC_E,         KC_R,         KC_T,         LCTL(KC_C),                  LCTL(KC_V),   KC_Z,         KC_U,         KC_I,         KC_O,         KC_P,         KC_BSLASH,
     KC_ESCAPE,    KC_A,         KC_S,       KC_D,         KC_F,         KC_G,         MO(L_UMLAUT),                MO(L_UMLAUT), KC_H,         KC_J,         KC_K,         KC_L,         KC_SCOLON,    KC_QUOTE,
-    OSM(MOD_LSFT),KC_Y,         KC_X,       KC_C,         KC_V,         KC_B,                                                    KC_N,         KC_M,         KC_COMMA,     KC_DOT,       KC_SLASH,     OSM(MOD_RSFT),
-    OSM(MOD_LCTL),n____,        KC_LGUI,    KC_LALT,      MO(L_DEV),                  LALT(KC_F4),                 KC_F5,                      MO(L_DEV),    KC_LEFT,      KC_DOWN,      KC_UP,        KC_RIGHT,
+    MOD_LSFT,     KC_Y,         KC_X,       KC_C,         KC_V,         KC_B,                                                    KC_N,         KC_M,         KC_COMMA,     KC_DOT,       KC_SLASH,     MOD_RSFT,
+    MOD_LCTL,     n____,        KC_LGUI,    KC_LALT,      MO(L_DEV),                  LALT(KC_F4),                 KC_F5,                      MO(L_DEV),    KC_LEFT,      KC_DOWN,      KC_UP,        KC_RIGHT,
                                                           KC_SPACE,     KC_DELETE,    KC_HOME,                     KC_END,       KC_BSPACE,    KC_ENTER
   ),
   [L_DEV] = LAYOUT_moonlander(
