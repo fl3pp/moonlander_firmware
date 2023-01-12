@@ -72,10 +72,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_BASE] = LAYOUT_moonlander(
     MO(L_F),      KC_GRAVE,     KC_1,       KC_2,         KC_3,         KC_4,         KC_5,                        KC_6,         KC_7,         KC_8,         KC_9,         KC_0,         n____,        MO(L_F),
     KC_TAB,       KC_Q,         KC_W,       KC_E,         KC_R,         KC_T,         LCTL(KC_C),                  LCTL(KC_V),   KC_Z,         KC_U,         KC_I,         KC_O,         KC_P,         KC_BSLASH,
-    KC_ESCAPE,    LGUI_T(KC_A), LALT_T(KC_S),LCTL_T(KC_D),LSFT_T(KC_F), KC_G,         MO(L_UMLAUT),                MO(L_UMLAUT), LT(L_ARR,KC_H),RSFT_T(KC_J),RCTL_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),KC_QUOTE,
+    KC_ESCAPE,    LGUI_T(KC_A), LALT_T(KC_S),LCTL_T(KC_D),LSFT_T(KC_F), LT(L_ARR,KC_G),MO(L_UMLAUT),               MO(L_UMLAUT), LT(L_ARR,KC_H),RSFT_T(KC_J),RCTL_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),KC_QUOTE,
     n____,        KC_Y,         KC_X,       KC_C,         KC_V,         KC_B,                                                    KC_N,         KC_M,         KC_COMMA,     KC_DOT,       KC_SLASH,     n____,
     n____,        n____,        n____,      n____,        MO(L_DEV),                  LALT(KC_F4),                 KC_F5,                      MO(L_DEV),    n____,        n____,        n____,        n____,
-                                                          KC_SPACE,     KC_DELETE,    KC_HOME,                     KC_END,       KC_BSPACE,    KC_ENTER
+                                                          KC_SPACE,     KC_DELETE,    n____,                       n____,        KC_BSPACE,    KC_ENTER
   ),
   [L_DEV] = LAYOUT_moonlander(
     _____,        _____,        _____,        _____,        _____,        _____,        _____,                     _____,        _____,        _____,        _____,        _____,        _____,        _____,
@@ -87,8 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [L_ARR] = LAYOUT_moonlander(
     _____,        _____,        _____,        _____,        _____,        _____,        _____,                     _____,        _____,        _____,        _____,        _____,        _____,        _____,
-    _____,        _____,        _____,        KC_UP,        _____,        _____,        _____,                     _____,        _____,        _____,        _____,        _____,        _____,        _____,
-    _____,        _____,        KC_LEFT,      KC_DOWN,      KC_RIGHT,     _____,        _____,                     _____,        _____,        _____,        _____,        _____,        _____,        _____,
+    _____,        _____,        KC_HOME,      KC_UP,        KC_END,       _____,        _____,                     _____,        _____,        KC_HOME,      KC_UP,        KC_END,       _____,        _____,
+    _____,        _____,        KC_LEFT,      KC_DOWN,      KC_RIGHT,     _____,        _____,                     _____,        _____,        KC_LEFT,      KC_DOWN,      KC_RIGHT,     _____,        _____,
     _____,        _____,        _____,        _____,        _____,        _____,                                                 _____,        _____,        _____,        _____,        _____,        _____,
     _____,        _____,        _____,        _____,        _____,                      _____,                     _____,                      _____,        _____,        _____,        _____,        _____,
                                                             _____,        _____,        _____,                     _____,        _____,        _____

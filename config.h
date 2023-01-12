@@ -21,5 +21,5 @@
 // Prevent rollover (n down, o down, n up, o up) to trigger mods, if duration lower than tapping term
 #define IGNORE_MOD_TAP_INTERRUPT
 // Undercut tapping term (n down, o down, o up, n up)
-#define TAPPING_FORCE_HOLD
+// #define TAPPING_FORCE_HOLD // (conciously not defined)
 // SEE: https://precondition.github.io/home-row-mods#using-home-row-mods-with-qmk
