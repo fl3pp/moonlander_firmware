@@ -23,3 +23,6 @@
 // Undercut tapping term (n down, o down, o up, n up)
 #define TAPPING_FORCE_HOLD
 // SEE: https://precondition.github.io/home-row-mods#using-home-row-mods-with-qmk
+
+// https://docs.qmk.fm/#/feature_caps_word?id=idle-timeout
+#define CAPS_WORD_IDLE_TIMEOUT 5000
