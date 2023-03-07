@@ -10,6 +10,11 @@ enum unicode_names {
   U_oe,
   U_THUMBUP,
   U_THUMBDWN,
+  U_WINK,
+  U_LAUGH,
+  U_SWEAT,
+  U_KISS,
+  U_HEART,
 };
 
 const uint32_t PROGMEM unicode_map[] = {
@@ -21,6 +26,11 @@ const uint32_t PROGMEM unicode_map[] = {
   [U_oe] = 0xF6,          // ö
   [U_THUMBUP] = 0x1F44D,  // 👍
   [U_THUMBDWN] = 0x1F44E, // 👎
+  [U_WINK] = 0x1F609,     // 😉
+  [U_LAUGH] = 0x1F602,    // 😂
+  [U_SWEAT] = 0x1F605,    // 😅
+  [U_KISS] = 0x1F618,     // 😘
+  [U_HEART] = 0x2764FE0F, // ❤️
 };
 
 /*
@@ -74,8 +84,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_BASE] = LAYOUT_moonlander(
     MO(L_F),      KC_GRAVE,     KC_1,       KC_2,         KC_3,         KC_4,         KC_5,                        KC_6,         KC_7,         KC_8,         KC_9,         KC_0,         n____,        MO(L_F),
     KC_TAB,       KC_Q,         KC_W,       KC_E,         KC_R,         KC_T,         LCTL(KC_C),                  LCTL(KC_V),   KC_Z,         KC_U,         KC_I,         KC_O,         KC_P,         KC_BSLASH,
-    KC_ESCAPE,    LGUI_T(KC_A),LALT_T(KC_S),LCTL_T(KC_D), LSFT_T(KC_F), KC_G,         MO(L_UMLAUT),                MO(L_UMLAUT), KC_H,         RSFT_T(KC_J),RCTL_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),KC_QUOTE,
-    n____,        KC_Y,         KC_X,       KC_C,         KC_V,         KC_B,                                                    KC_N,         KC_M,        KC_COMMA,     KC_DOT,       KC_SLASH,     n____,
+    KC_ESCAPE,    LGUI_T(KC_A),LALT_T(KC_S),LCTL_T(KC_D), LSFT_T(KC_F), KC_G,         MO(L_UMLAUT),                MO(L_UMLAUT), KC_H,         RSFT_T(KC_J), RCTL_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),KC_QUOTE,
+    n____,        KC_Y,         KC_X,       KC_C,         KC_V,         KC_B,                                                    KC_N,         KC_M,         KC_COMMA,     KC_DOT,       KC_SLASH,     n____,
     n____,        n____,        n____,      n____,        MO(L_DEV),                  LALT(KC_F4),                 KC_F5,                      MO(L_DEV),    n____,        n____,        n____,        n____,
                                                           KC_SPACE,     KC_DELETE,    n____,                       n____,        KC_BSPACE,    LT(L_NAV,KC_ENTER)
   ),
@@ -105,8 +115,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [L_UMLAUT] = LAYOUT_moonlander(
     _____,        n____,        n____,        n____,        n____,        n____,        n____,                     n____,        n____,        n____,        n____,        n____,        n____,        _____,
-    _____,        n____,        n____,        n____,        n____,        n____,        n____,                     n____,        n____,        KC_UE,        n____,        KC_OE,        n____,        _____,
-    _____,        KC_AE,        n____,        n____,        n____,        n____,        _____,                     _____,        n____,        n____,        n____,        n____,        n____,        _____,
+    _____,        n____,        X(U_WINK),    n____,        n____,        n____,        n____,                     n____,        n____,        KC_UE,        n____,        KC_OE,        n____,        _____,
+    _____,        KC_AE,        X(U_SWEAT),   n____,        n____,        n____,        _____,                     _____,        X(U_HEART),   n____,        X(U_KISS),    X(U_LAUGH),   n____,        _____,
     _____,        X(U_THUMBUP), n____,        n____,        n____,        n____,                                                 n____,        X(U_THUMBDWN),n____,        n____,        n____,        _____,
     _____,        _____,        n____,        n____,        n____,                      n____,                     n____,                      n____,        n____,        n____,        n____,        _____,
                                                             _____,        _____,        _____,                     _____,        _____,        _____
