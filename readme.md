@@ -29,7 +29,7 @@ To compile & flash:
 - [ZSA's fork](https://github.com/zsa/qmk_firmware) of the QMK firmware (check current release branch)
 
 ``` bash
-git clone --recurse-submodules --branch firmware21 https://github.com/zsa/qmk_firmware zsa_qmk_firmware
+git clone --recurse-submodules --branch firmware23 https://github.com/zsa/qmk_firmware zsa_qmk_firmware
 ```
 
 ## Makefile and MSYS
