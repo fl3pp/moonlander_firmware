@@ -7,7 +7,7 @@ ORYX_ENABLE = yes
 SPACE_CADET_ENABLE = no
 UNICODEMAP_ENABLE = yes
 
-# https://docs.qmk.fm/#/feature_caps_word?id=caps-word
+# https://docs.qmk.fm/#/feature_caps_word?id=caps-word, enables CW_TOGG
 CAPS_WORD_ENABLE = yes
 
 SRC = matrix.c

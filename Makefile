@@ -4,10 +4,10 @@ MSYS := $(ROOT_DIR)msys.cmd
 all: build
 
 build:
-	$(MSYS) qmk compile
+	$(MSYS) qmk compile -j 0
 
 flash:
-	$(MSYS) qmk flash
+	$(MSYS) qmk flash -j 0
 
 console:
 	$(MSYS) qmk console
